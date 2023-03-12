@@ -10,7 +10,7 @@
 
 ## Estudos iniciais
 
-### testando a funcionalidade de aplicações semelhantes
+### Testando a funcionalidade de aplicações semelhantes
 ### Relight:
 
 Gráfico de cores para diferentes estilos de arte
