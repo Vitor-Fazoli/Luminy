@@ -50,7 +50,9 @@ Gráfico Quantitativo de funcionamento do software
 
 sempre que vemos uma cor clara e logo depois uma escura, isso significa que há relevo muito grande ali, por exemplo 
 
-![Sem título.png](lumenin%205a0cf487978c40a39f8163bc56b6e115/Sem_ttulo.png)
+<p align="center" >
+  <img  src="Documentation/Assets/image_batman.png"/>
+</p>
 
 Fonte: [https://www.boletimnerd.com.br/batman-3-quadrinhos-que-influenciaram-o-novo-filme/](https://www.boletimnerd.com.br/batman-3-quadrinhos-que-influenciaram-o-novo-filme/)
 
@@ -60,9 +62,10 @@ Nesse quadrinho do batman, podemos ver que em seu ombro está muito claro e logo
 
 você irá criar uma malha por cima de toda a imagem e definir um inteiro para a profundidade, assim cada pixel dá imagem deve receber uma profundidade ideal ( pode ser feito a mão ou por uma ia ) 
 
-![DesthronerScale.png](lumenin%205a0cf487978c40a39f8163bc56b6e115/DesthronerScale.png)
-
-![DesthronerScale.png](lumenin%205a0cf487978c40a39f8163bc56b6e115/DesthronerScale%201.png)
+<p align="center" >
+  <img  src="Documentation/Assets/image_batman.png"/>
+  <img  src="Documentation/Assets/image_batman.png"/>
+</p>
 
 Assim ele vai numerar toda a malha de pixels na tela com numeros que podem ter uma variação maior dependendo do tamanho da imagem ( no caso de exemplo)
 
