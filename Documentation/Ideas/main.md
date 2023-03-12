@@ -10,16 +10,9 @@
 
 ## Estudos iniciais
 
-testando a funcionalidade de aplicações semelhantes
+### Testando a funcionalidade de aplicações semelhantes
+### Relight:
 
-Relight:
-
-Gráfico de cores para diferentes estilos de arte
-
-| Azul | Realista |
-| --- | --- |
-| Vermelho | Desenho |
-| Verde | Pixel Arte |
 
 Gráfico Quantitativo de funcionamento do software
 
@@ -28,17 +21,23 @@ Gráfico Quantitativo de funcionamento do software
 | Restrição | 50% |
 | Problema | 0% |
 
+## Realista
+
 | Imagem | Alta Resolução | Média Resolução | Baixa Resolução |
 | --- | --- | --- | --- |
 | Objetos | Funciona | Funciona | Restrição |
 | Humanos  | Funciona | Funciona | Restrição |
 | Paisagens | Funciona | Problema | Problema |
 
+## Desenho
+
 | Imagem | Alta Resolução | Média Resolução | Baixa Resolução |
 | --- | --- | --- | --- |
 | Objetos |  |  |  |
 | Humanos  |  |  |  |
 | Paisagens |  | Funciona |  |
+
+## Pixel Arte
 
 | Imagem | Alta Resolução | Média Resolução | Baixa Resolução |
 | --- | --- | --- | --- |
@@ -51,7 +50,7 @@ Gráfico Quantitativo de funcionamento do software
 sempre que vemos uma cor clara e logo depois uma escura, isso significa que há relevo muito grande ali, por exemplo 
 
 <p align="center" >
-  <img  src="Documentation/Assets/image_batman.png"/>
+  <img  src="/Documentation/Assets/batman.png"/>
 </p>
 
 Fonte: [https://www.boletimnerd.com.br/batman-3-quadrinhos-que-influenciaram-o-novo-filme/](https://www.boletimnerd.com.br/batman-3-quadrinhos-que-influenciaram-o-novo-filme/)
@@ -63,8 +62,8 @@ Nesse quadrinho do batman, podemos ver que em seu ombro está muito claro e logo
 você irá criar uma malha por cima de toda a imagem e definir um inteiro para a profundidade, assim cada pixel dá imagem deve receber uma profundidade ideal ( pode ser feito a mão ou por uma ia ) 
 
 <p align="center" >
-  <img  src="Documentation/Assets/image_batman.png"/>
-  <img  src="Documentation/Assets/image_batman.png"/>
+  <img  src="/Documentation/Assets/exemplo1.png"/>
+  <img  src="/Documentation/Assets/exemplo2.png"/>
 </p>
 
 Assim ele vai numerar toda a malha de pixels na tela com numeros que podem ter uma variação maior dependendo do tamanho da imagem ( no caso de exemplo)
