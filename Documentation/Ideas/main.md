@@ -13,12 +13,6 @@
 ### Testando a funcionalidade de aplicações semelhantes
 ### Relight:
 
-Gráfico de cores para diferentes estilos de arte
-
-| Azul | Realista |
-| --- | --- |
-| Vermelho | Desenho |
-| Verde | Pixel Arte |
 
 Gráfico Quantitativo de funcionamento do software
 
@@ -27,17 +21,23 @@ Gráfico Quantitativo de funcionamento do software
 | Restrição | 50% |
 | Problema | 0% |
 
+## Realista
+
 | Imagem | Alta Resolução | Média Resolução | Baixa Resolução |
 | --- | --- | --- | --- |
 | Objetos | Funciona | Funciona | Restrição |
 | Humanos  | Funciona | Funciona | Restrição |
 | Paisagens | Funciona | Problema | Problema |
 
+## Desenho
+
 | Imagem | Alta Resolução | Média Resolução | Baixa Resolução |
 | --- | --- | --- | --- |
 | Objetos |  |  |  |
 | Humanos  |  |  |  |
 | Paisagens |  | Funciona |  |
+
+## Pixel Arte
 
 | Imagem | Alta Resolução | Média Resolução | Baixa Resolução |
 | --- | --- | --- | --- |
