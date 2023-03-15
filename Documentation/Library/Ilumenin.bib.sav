@@ -15,18 +15,6 @@ into one texture and decoded into a normal map that represents the complete imag
   url      = {https://app.uff.br/riuff/handle/1/5683},
 }
 
-@Article{,
-  author   = {Analysis and Compilation of Normal Map Generation Techniques for Pixel Art},
-  title    = {Rodrigo D. Moreira, Flávio Coutinho, Luiz Chaimowicz},
-  abstract = {Pixel art is a popular artistic style adopted in the gaming industry, and nowadays, it is often accompanied by modern rendering techniques. One example is dynamic lighting for the game sprites, for which normal mapping defines how the light interacts with the material represented by each pixel. Although there are different methods to generate normal maps for 3D games, applying them for pixel art may not yield correct results due to the style specificities. Therefore, this work compiles different normal map generation methods and study their applicability for pixel art, reducing the scarcity of existing material on the techniques and contributing to a qualitative analysis of the behavior of these methods in different case studies.},
-  file     = {:- Rodrigo D. Moreira, Flávio Coutinho, Luiz Chaimowicz.pdf:PDF},
-  url      = {https://ieeexplore.ieee.org/abstract/document/9961116},
-}
-
-@Article{,
-  url = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9961116},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}
 
 @Comment{jabref-meta: saveActions:disabled;
