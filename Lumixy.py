@@ -1,9 +1,9 @@
+from asyncore import read
 import numpy as np
 import torch
 import torchvision
 import matplotlib.pyplot as plt
 import cv2
-
 
 def show_anns(anns):
     if len(anns) == 0:
@@ -24,14 +24,17 @@ def show_anns(anns):
 print("PyTorch version:", torch.__version__)
 print("Torchvision version:", torchvision.__version__)
 print("CUDA is available:", torch.cuda.is_available())
+print(torch.version.cuda)
+
+
 
 image = cv2.imread('C:/Users/vhfaz/source/repos/Lumixy/Lumixy/Assets/image.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-plt.figure(figsize=(10,10))
-plt.imshow(image)
-plt.axis('off')
-plt.show()
+#plt.figure(figsize=(10,10))
+#plt.imshow(image)
+#plt.axis('off')
+#plt.show()
 
 
 import sys
@@ -47,9 +50,12 @@ sam = sam_model_registry[model_type](checkpoint=sam_checkpoint)
 sam.to(device=device)
 
 mask_generator = SamAutomaticMaskGenerator(sam)
+masks = mask_generator.generate(image)
 
 plt.figure(figsize=(10,10))
 plt.imshow(image)
 show_anns(masks)
 plt.axis('off')
 plt.show() 
+
+read()
