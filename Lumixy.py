@@ -11,6 +11,10 @@ import time
 from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 
 
+def generate_identity():
+    return str(random.randrange(10000000))
+
+
 def show_anns(anns):
     if len(anns) == 0:
         return
@@ -26,8 +30,15 @@ def show_anns(anns):
         ax.imshow(np.dstack((img, m * 0.35)))
 
 
-
-print("Lumixy version: 0.0.3\n")
+print(' _                     _               ')
+print('| |                   (_)              ')
+print('| |    _   _ _ __ ___  _ _ __  _   _   ')
+print("| |   | | | | '_ ` _ \\| | '_ \\| | | |  ")
+print('| |___| |_| | | | | | | | | | | |_| |  ')
+print('\\_____/\\__,_|_| |_| |_|_|_| |_|\\__, |  ')
+print('                                __/ |  ')
+print('                               |___/   ')
+print("version: 0.0.5\n")
 
 print("PyTorch version:", torch.__version__)
 print("Torchvision version:", torchvision.__version__)
@@ -39,14 +50,14 @@ initial_time = time.time()
 useMemoryInitial = str(psutil.virtual_memory().used / (1024 * 1024 * 1024)) + 'GB'
 useCpuInitial = str(psutil.cpu_percent().real) + ' %'
 
-print('Processo iniciado!')
+print('Program starting')
 sam = sam_model_registry["vit_h"](checkpoint="Assets/sam_vit_h_4b8939.pth")
 mask_generator = SamAutomaticMaskGenerator(sam)
 masks = mask_generator.generate(image)
 
 plt.figure(figsize=(10, 10))
 plt.imshow(image)
-identity = str(random.randrange(10000000))
+identity = generate_identity()
 show_anns(masks)
 plt.axis('off')
 plt.savefig('Assets/Results/' + str(identity) + '.png')
