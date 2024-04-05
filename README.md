@@ -1,4 +1,5 @@
-<h1 align="center">Lumixy</h1>
+<h1 align="center">Luminy</h1>
+<img  src="Icon.svg"/>
 
 <p>Este é um TCC focado em desenvolvimento que tem como ideal trazer o ambiente de iluminação para objetos e paisagens bidimensionais
 Trabalhos Similares (Relight): https://clipdrop.co/relight</p>
