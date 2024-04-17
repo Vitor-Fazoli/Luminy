@@ -33,6 +33,12 @@ def v_generate_mask(mask):
     ax = plt.gca()
     ax.set_autoscale_on(False)
 
+    image_width = mask['width']
+    image_height = mask['height']
+
+    print(image_width)
+    print(image_height)
+
     color_labels = []  # Lista para armazenar as cores de cada pixel
 
     for ann in mask:
