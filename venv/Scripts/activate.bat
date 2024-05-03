@@ -1,4 +1,4 @@
-@set "VIRTUAL_ENV=C:\Users\vhfaz\OneDrive\Documentos\Projetos\Luminy\venv"
+@set "VIRTUAL_ENV=D:\Programas\Luminy\venv"
 
 @set "VIRTUAL_ENV_PROMPT="
 @if NOT DEFINED VIRTUAL_ENV_PROMPT (

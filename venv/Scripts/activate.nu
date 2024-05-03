@@ -32,7 +32,7 @@ export-env {
       }
     }
 
-    let virtual_env = 'C:\Users\vhfaz\OneDrive\Documentos\Projetos\Luminy\venv'
+    let virtual_env = 'D:\Programas\Luminy\venv'
     let bin = 'Scripts'
 
     let is_windows = ($nu.os-info.family) == 'windows'

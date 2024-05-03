@@ -1,112 +1,81 @@
-import random
 import numpy as np
-import matplotlib.pyplot as plt
 import cv2
-from openpyxl import load_workbook
-import psutil
-import time
 from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
-import Config
 
 
-def s_generate_identity():
-    return str(random.randrange(10000000))
+def generate_mask(anns):
+    if len(anns) == 0:
+        return None
 
+    sorted_anns = sorted(anns, key=(lambda x: x['area']), reverse=True)
 
-def v_generate_mask(mask):
-    if len(mask) == 0:
-        return
+    final_image = np.zeros((sorted_anns[0]['segmentation'].shape[0], sorted_anns[0]['segmentation'].shape[1], 3),
+                           dtype=np.uint8)
 
-    # Cores padrão
     pattern_colors = [
-        [1, 0, 0],  # Vermelho
-        [0, 1, 0],  # Verde
-        [0, 0, 1],  # Azul
-        [1, 1, 0],  # Amarelo
-        [1, 0, 1],  # Magenta
+        [255, 0, 0],  # Vermelho
+        [0, 255, 0],  # Verde
+        [0, 0, 255],  # Azul
+        [255, 255, 0],  # Amarelo
+        [255, 0, 255],  # Magenta
+        [0, 255, 255],  # ciano
+        [255, 255, 255],  # Branco
+        [50, 50, 50]  # cinza
     ]
 
-    # Inicializa o índice da cor
-    index_color = 0
-
-    sorted_ans = sorted(mask, key=(lambda x: x['area']), reverse=True)
-    ax = plt.gca()
-    ax.set_autoscale_on(False)
-
-    image_width = mask['width']
-    image_height = mask['height']
-
-    print(image_width)
-    print(image_height)
-
-    color_labels = []  # Lista para armazenar as cores de cada pixel
-
-    for ann in mask:
+    for idx, ann in enumerate(sorted_anns):
         m = ann['segmentation']
-        img = np.ones((m.shape[0], m.shape[1], 3))
-
-        # Mantém as áreas pretas da imagem original
-        img[np.where(m == 0)] = [0, 0, 0]
-
-        # Aplica a cor padrão apenas às áreas não pretas
-        color_mask = pattern_colors[index_color]
-        img[np.where(m != 0)] = color_mask
-
-        index_color = (index_color + 1) % len(pattern_colors)
-
-        ax.imshow(np.dstack((img, m)))
-
-        # Adiciona as cores dos pixels à lista
+        color_mask = pattern_colors[idx % len(pattern_colors)]
         for y in range(m.shape[0]):
             for x in range(m.shape[1]):
-                if m[y, x] != 0:
-                    color_labels.append(tuple(img[y, x]))
+                if m[y, x]:
+                    final_image[y, x] = color_mask
 
-    print(color_labels)
-
-
+    return final_image
 
 
-sam = sam_model_registry["vit_h"](checkpoint="Assets/sam_vit_h_4b8939.pth")
-mask_generator = SamAutomaticMaskGenerator(sam)
-Config.start_program()
+def main():
+    #TODO: Criar o excel para receber as informações
 
-image = cv2.imread('Assets/Images/teste.png')
-image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    #TODO: Ler todos os arquivos dentro da pasta images e armazenar o caminho deles para usar em seguida
+    #TODO: ver a quantidade de arquivos dentro da pastas images
 
-initial_time = time.time()
-useMemoryInitial = str(psutil.virtual_memory().used / (1024 * 1024 * 1024)) + ' GB'
-useCpuInitial = str(psutil.cpu_percent().real) + ' %'
+    #TODO: Fazer um for passando a quantidade de arquivos
+    sam = sam_model_registry["vit_h"](checkpoint="Assets/sam_vit_h_4b8939.pth")
+    mask_generator = SamAutomaticMaskGenerator(sam)
 
-print('Program starting')
+    # TODO: receber o string de caminho das imagens
+    image = cv2.imread('Assets/Images/example_16x16.png')
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-masks = mask_generator.generate(image)
-print("Mask generator finished!")
+    print('Program starting')
 
-plt.figure(figsize=(10, 10))
-plt.imshow(image)
-identity = s_generate_identity()
-v_generate_mask(masks)
-plt.axis('off')
-plt.show()
+    masks = mask_generator.generate(image)
+    founded_image = generate_mask(masks)
 
-#plt.savefig('Assets/Results/Example16x16/' + str(identity) + '.png')
+    #TODO: receber o string de caminho das imagens
+    expected_image = cv2.imread("/content/Expected/example_16x16.png")
+    expected_image = cv2.cvtColor(expected_image, cv2.COLOR_BGR2RGB)
+    color_expected = expected_image[0, 0]
+    color_founded = founded_image[0, 0]
 
-useMemoryFinal = str(psutil.virtual_memory().used / (1024 * 1024 * 1024)) + 'GB'
-useCpuFinal = str(psutil.cpu_percent().real) + ' %'
+    error_count = 0
 
-final_time = time.time()
-total_time = final_time - initial_time
+    for y in range(founded_image.shape[1]):
+        for x in range(founded_image.shape[0]):
+            if not np.array_equal(expected_image[x, y], color_expected):
+                color_expected = expected_image[x, y]
+                color_founded = founded_image[x, y]
 
-wb = load_workbook('dados.xlsx')
+            if np.array_equal(founded_image[x, y], color_founded):
+                continue
+            else:
+                error_count += 1
 
-sheet = wb['principal']
+    pixels_count = expected_image.shape[0] * expected_image.shape[1]
+    error_percentage = abs((error_count / pixels_count) * 100 - 100)
 
-new_row = [useMemoryInitial, useMemoryFinal, useCpuInitial, useCpuFinal, image.size, total_time, str(identity) + '.png']
-#sheet.append(new_row)
+    #TODO: salvar as informações na tabela Results.xlsx
 
-#wb.save('dados.xlsx')
-
-# TODO: Criar uma forma de identificar as mascaras do resultado com o esperado para gerar uma precisão
-
-print('Process finished!')
+if __name__ == "__main__":
+    main()
