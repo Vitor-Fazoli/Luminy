@@ -1,0 +1,11 @@
+Definir faixas de valores 
+em relação a quantidade de pixels 
+
+Calcular a Média a Variancia e o 
+Desvio padrão entre as faixas
+
+Uma tabela final mostrando o resumo
+que foi feito
+
+usar estatistica para definir as faixas 
+entre os pixels
