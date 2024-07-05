@@ -9,3 +9,8 @@ que foi feito
 
 usar estatistica para definir as faixas 
 entre os pixels
+
+A Regra de Sturges
+
+Mostrar os gráficos da variação da tabela
+
