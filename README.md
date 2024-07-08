@@ -3,7 +3,7 @@
 <p>Este é um TCC focado em desenvolvimento que tem como ideal trazer o ambiente de iluminação para objetos e paisagens bidimensionais
 Trabalhos Similares (Relight): https://clipdrop.co/relight</p>
 
- <p> O trabalho será feito em python e irá recuperar uma imagem em formato png e uma posição de luz dentro da imagem para realizar uma segmentação, detecção de profundidade de cada uma dos grupos segmentados, para por fim executar uma série de calculos sobre cada pixel, para iluminar a imagem de maneira consisa e coesa</p>
+<p> O trabalho será feito em python e irá recuperar uma imagem em formato png e uma posição de luz dentro da imagem para realizar uma segmentação, detecção de profundidade de cada uma dos grupos segmentados, para por fim executar uma série de calculos sobre cada pixel, para iluminar a imagem de maneira consisa e coesa</p>
 
 <p>30/03/2024 - Hoje realizei a criação de funções para geração de um documento xlsx e imagens para criação dos dados futuros</p>
 
@@ -31,8 +31,6 @@ para fazer as margens entre os tamanhos de pixel arte vamos utilizar de um calcu
 
 Dessa forma, os grupos criados apartir deste calculo são os seguintes:
 
-
-
 **Grupo 2:**
 63, 143, 144, 169, 192, 195, 342, 360, 567, 957, 960, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024, 1485, 1485, 1932, 2048, 2268
 
@@ -40,28 +38,4 @@ Dessa forma, os grupos criados apartir deste calculo são os seguintes:
 6400, 7168, 7371, 8960, 8960, 10752, 13625
 
 **Grupo 4:**
-16616, 45056, 45056
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+16616, 45056, 4505
