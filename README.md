@@ -39,3 +39,50 @@ Dessa forma, os grupos criados apartir deste calculo são os seguintes:
 
 **Grupo 4:**
 16616, 45056, 4505
+
+Qualificação do TCC - Análise
+
+- Luiz:
+  - apresentou muito bem
+  - ficou confuso se iria usar uma ferramenta ou desenvolver
+  - a ideia é boa
+  - não apresentou a unity e nem a justificativa
+  - não explicou: funciona, problema, restrição, objetos, pessoas, ambientes (ver tabela comparativa)
+  - avaliar o uso do Godot (problema quando usa 2D e 3D, resposta do Vitor)
+  - Anotações do whatsapp:
+    Página 06: Objetivos Específicos
+Seprar em 2 objetivos (Criar um Protótipo, Desenvolver a Ferrameta)
+
+Página 15: Metodologia
+Reescrever o ínicio do primeiro parágrafo. Ficou parecendo uma nota
+mental sua
+
+Sugestão para itens da metodologia
+3.1, 3.2 3.3 - Achei os itens um pouco confusos, talvez reescrever eles
+Exemplo
+No item 3.1 você chama o tópico de levantamento de requisitos. Então
+poderia conter um paragráfo inicial descrevendo a sua ideia central
+e justificando a aplicação de uma ferramenta Relight para essa parte.
+No item 3.2 você poderia colocar o tópico mais genérico por exemplo:
+"Iluminição em Engine para games" e deixar para falar mais do Unit no seu
+item 3.5 que é o item que você justifica quais ferramentas serão
+utilizadas
+
+Voltando ao seu objetivo:
+O objetivo do trabalho é simular a iluminação em imagens digitais de média e
+baixa resolução por meio do desenvolvimento de uma ferramenta.
+Oque você definiu no sua metodologia que vai possibilitar alcançar
+seu objetivo.
+
+- Arthur:
+  - boa apresentação
+  - texto precisa ser melhor trabalhado
+  - enfatizar o problema
+  - foco! o que você vai fazer?
+  - não falou do relight
+  - motivação precisa melhorar
+  - o que diferencia o seu trabalho dos demais? Resolução
+  - falar do pixelart (motivação)
+  - não ficou claro a questão da marcação manual e uso de IA?
+  - lista de requisitos (engenharia de software)
+  - vender melhor o peixe
