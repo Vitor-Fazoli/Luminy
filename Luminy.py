@@ -68,14 +68,18 @@ def main():
         masks = mask_generator.generate(image)
         founded_image = generate_mask(masks)
 
+        founded_image = cv2.cvtColor(founded_image, cv2.COLOR_BGR2RGB)
+
         expected_image = cv2.imread('Assets/Expected/' + image_path)
         expected_image = cv2.cvtColor(expected_image, cv2.COLOR_BGR2RGB)
 
         # MSE Normalized
-        mse = ski.metrics.normalized_root_mse(image, expected_image)
+        nrmse = ski.metrics.normalized_root_mse(founded_image, expected_image)
+        print(founded_image)
+        print(expected_image)
 
         # Squared Error
-        squared_error = ski.metrics.mean_squared_error(image, expected_image)
+        mse = ski.metrics.mean_squared_error(founded_image, expected_image)
 
         color_expected = expected_image[0, 0]
         color_founded = founded_image[0, 0]
@@ -95,7 +99,7 @@ def main():
 
         pixels_count = expected_image.shape[0] * expected_image.shape[1]
         error_percentage = abs((error_count / pixels_count) * 100 - 100)
-        save_data([image_path, pixels_count, error_percentage, mse, squared_error], 'dados.xlsx')
+        save_data([image_path, pixels_count, error_percentage, mse, nrmse], 'dados.xlsx')
 
 
 if __name__ == "__main__":
