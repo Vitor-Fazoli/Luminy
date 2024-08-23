@@ -9,7 +9,7 @@ import skimage as ski
 def save_data(data, excel_file):
     workbook = load_workbook(filename=excel_file)
 
-    sheet = workbook.active
+    sheet = workbook['dados']
     indicate_column = 'A'
     next_line = 1
     while sheet[f"{indicate_column}{next_line}"].value is not None:
@@ -67,16 +67,19 @@ def main():
 
         masks = mask_generator.generate(image)
         founded_image = generate_mask(masks)
-
-        founded_image = cv2.cvtColor(founded_image, cv2.COLOR_BGR2RGB)
-
+        
         expected_image = cv2.imread('Assets/Expected/' + image_path)
+
+        #Passando as duas imagens para um mesmo padrão de cores
+        founded_image = cv2.cvtColor(founded_image, cv2.COLOR_BGR2RGB)
         expected_image = cv2.cvtColor(expected_image, cv2.COLOR_BGR2RGB)
+       
+        # Normalizando as imagens
+        founded_image = founded_image.astype(np.float32) / 255.0
+        expected_image = expected_image.astype(np.float32) / 255.0
 
         # MSE Normalized
         nrmse = ski.metrics.normalized_root_mse(founded_image, expected_image)
-        print(founded_image)
-        print(expected_image)
 
         # Squared Error
         mse = ski.metrics.mean_squared_error(founded_image, expected_image)
