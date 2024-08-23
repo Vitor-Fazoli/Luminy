@@ -54,6 +54,24 @@ def generate_mask(anns):
 
     return final_image
 
+def err_percent(expected_image, founded_image):
+    color_expected = expected_image[0, 0]
+    color_founded = founded_image[0, 0]
+
+    error_count = 0
+
+    for y in range(founded_image.shape[1]):
+        for x in range(founded_image.shape[0]):
+            if not np.array_equal(expected_image[x, y], color_expected):
+                color_expected = expected_image[x, y]
+                color_founded = founded_image[x, y]
+
+            if np.array_equal(founded_image[x, y], color_founded):
+                continue
+            else:
+                error_count += 1
+
+    return abs((error_count / pixels_count) * 100 - 100)
 
 def main():
     files = os.listdir('Assets/Expected')
@@ -78,32 +96,20 @@ def main():
         founded_image = founded_image.astype(np.float32) / 255.0
         expected_image = expected_image.astype(np.float32) / 255.0
 
-        # MSE Normalized
-        nrmse = ski.metrics.normalized_root_mse(founded_image, expected_image)
-
-        # Squared Error
+        # MSE
         mse = ski.metrics.mean_squared_error(founded_image, expected_image)
-
-        color_expected = expected_image[0, 0]
-        color_founded = founded_image[0, 0]
-
-        error_count = 0
-
-        for y in range(founded_image.shape[1]):
-            for x in range(founded_image.shape[0]):
-                if not np.array_equal(expected_image[x, y], color_expected):
-                    color_expected = expected_image[x, y]
-                    color_founded = founded_image[x, y]
-
-                if np.array_equal(founded_image[x, y], color_founded):
-                    continue
-                else:
-                    error_count += 1
-
-        pixels_count = expected_image.shape[0] * expected_image.shape[1]
-        error_percentage = abs((error_count / pixels_count) * 100 - 100)
-        save_data([image_path, pixels_count, error_percentage, mse, nrmse], 'dados.xlsx')
-
+        
+        f1_score = ski.metrics.f1_score(founded_image, expected_image, average='weighted')
+        
+        r_squared = ski.metrics.r2_score(founded_image, expected_image)
+        
+        error_percentage = err_percent(expected_image, founded_image)
+        
+        pixels_count = founded_image.shape[0] * founded_image.shape[1]
+        
+        size_image = founded_image.shape[0] + "x" + founded_image.shape[1] 
+        
+        save_data([image_path, pixels_count,size_image, error_percentage, mse, f1_score, r_squared], 'dados.xlsx')
 
 if __name__ == "__main__":
     main()
