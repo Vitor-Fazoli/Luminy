@@ -54,7 +54,19 @@ def generate_mask(anns):
 
     return final_image
 
-def err_percent(expected_image, founded_image):
+def calculate_ncc(imageA, imageB):
+    # Convert images to grayscale
+    grayA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)
+    grayB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)
+    
+    # Resize images to the same size
+    grayB = cv2.resize(grayB, grayA.shape[::-1])
+    
+    # Compute the normalized cross-correlation
+    ncc = cv2.matchTemplate(grayA, grayB, method=cv2.TM_CCORR_NORMED)
+    return ncc[0][0]
+
+def err_percent(expected_image, founded_image, pixels_count):
     color_expected = expected_image[0, 0]
     color_founded = founded_image[0, 0]
 
@@ -95,21 +107,20 @@ def main():
         # Normalizando as imagens
         founded_image = founded_image.astype(np.float32) / 255.0
         expected_image = expected_image.astype(np.float32) / 255.0
+        pixels_count = founded_image.shape[0] * founded_image.shape[1]
 
         # MSE
-        mse = ski.metrics.mean_squared_error(founded_image, expected_image)
+        mse = ski.metrics.mean_squared_error(expected_image, founded_image)
+        print(mse)
+
+        ncc = calculate_ncc(founded_image, expected_image)
+        print(ncc)
         
-        f1_score = ski.metrics.f1_score(founded_image, expected_image, average='weighted')
+        error_percentage = err_percent(expected_image, founded_image, pixels_count)
         
-        r_squared = ski.metrics.r2_score(founded_image, expected_image)
+        size_image = (str)(founded_image.shape[0]) + "x" + (str)(founded_image.shape[1]) 
         
-        error_percentage = err_percent(expected_image, founded_image)
-        
-        pixels_count = founded_image.shape[0] * founded_image.shape[1]
-        
-        size_image = founded_image.shape[0] + "x" + founded_image.shape[1] 
-        
-        save_data([image_path, pixels_count,size_image, error_percentage, mse, f1_score, r_squared], 'dados.xlsx')
+        save_data([image_path, pixels_count,size_image, error_percentage, mse, ncc], 'dados.xlsx')
 
 if __name__ == "__main__":
     main()
