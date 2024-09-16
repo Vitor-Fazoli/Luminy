@@ -89,12 +89,11 @@ Segundo \cite{Gomes_undated-tr} No método de sombreamento de Phong, a partir da
 No sombreamento de Phong, as bandas de Mach são praticamente imperceptíveis. Além disso, o brilho especular é mantido independentemente do refinamento da malha.
 
 
-\section{}
+\section{Segment Anything em Visão Computacional}
 
-
-
-\section{Segment Anything}
-A \textit{Segment Anything Model} (SAM) é uma inovação recente no campo da segmentação de imagens, desenvolvida pela Meta. Este modelo permite a segmentação e identificação de imagens de forma generalizada, adaptando-se a novos tipos de imagens sem a necessidade de re-treinamento extensivo. O SAM foi projetado para democratizar a segmentação, possibilitando a identificação precisa de \textit{pixels} que pertencem a objetos. Por exemplo, ao inserir um \textit{prompt} como "gato", o modelo consegue identificar e isolar todos os gatos presentes em uma imagem \cite{kirillov2023segany}
+O modelo Segment Anything (SA) é um avanço crucial na segmentação de imagens, capaz de produzir mais de um bilhão de máscaras em 11 milhões de imagens. Sua flexibilidade permite sua aplicação em diversas áreas, como a imagem médica e a glaciologia, devido à sua capacidade de executar tarefas zero-shot, muitas vezes superando métodos supervisionados. O SA utiliza redes neurais convolucionais (CNNs), uma arquitetura codificadora-decodificadora e mecanismos de atenção espacial para alcançar alta eficiência. No entanto, sua complexidade representa um desafio para implementação em tempo real e em ambientes com recursos limitados \cite{kirillov2023segany}.
+Em campos específicos, como microscopia e glaciologia, o SA foi adaptado para melhorar a qualidade da segmentação em diversas condições de imagem, evidenciando sua robustez e versatilidade \cite{zhongkai_yuan_2024}. 
+Por exemplo, sua adaptação para dados de microscopia levou a melhorias significativas na segmentação e rastreamento de objetos em múltiplas dimensões, destacando o potencial do modelo para resolver problemas complexos em análise de imagens \cite{anwai_archit__2023}.
 
 \subsection{Codificador de Imagens (Image Encoder)}
 
@@ -120,6 +119,35 @@ O Transformer utiliza uma dimensão de incorporação de 256. Os blocos MLP do T
 
 As convoluções transpostas usadas para ampliar a incorporação da imagem de saída são \(2 \times 2\), com stride 2 e dimensões de canal de saída de 64 e 32, e utilizam ativações GELU. Elas são separadas por normalização em camadas.
 
+
+\section{Geração de Mapas de Normais}
+
+Os mapas de normais são essenciais para definir como a luz interage com as superfícies, criando efeitos de iluminação dinâmica em gráficos 3D, pixel art e renderização de fluidos. A geração de mapas de normais, especialmente para pixel art, é desafiadora devido à sua estética única. Métodos como amostragem geométrica e modelos generativos profundos, como Redes Adversárias Generativas Condicionais (CGANs), foram desenvolvidos para gerar mapas de normais precisos. Um estudo compilou diferentes técnicas de geração de mapas de normais e analisou sua aplicabilidade ao pixel art, contribuindo para uma análise qualitativa do comportamento dessas técnicas em diferentes cenários \cite{Moreira}.
+No contexto de renderização de fluidos, a refinada representação dos mapas de normais por meio de redes neurais aprimora a qualidade da renderização, mantendo detalhes e suavidade. 
+O uso de CGANs tem demonstrado eficácia em melhorar a precisão dos mapas de normais, capturando detalhes intricados e aprimorando a iluminação realista em renderizações \cite{myungjin_choi__2021}. 
+A integração dessas técnicas na ferramenta proposta no seu TCC pode aprimorar a percepção de profundidade e a iluminação realista em aplicações de imagens.
+
+\subsection{Métodos Tradicionais}
+
+Os mapas de normais são amplamente utilizados para simular detalhes de superfícies sem a necessidade de adicionar geometria adicional a um modelo 3D.
+Um método tradicional de gerar mapas de normais é a partir de malhas 3D de alta resolução. 
+Nesta abordagem, um modelo detalhado é projetado em uma malha de menor resolução, e a diferença nas inclinações das superfícies é codificada em um mapa de normais.
+Outro método convencional é o bump mapping, que utiliza mapas de normais para simular rugosidades e imperfeições na superfície de um objeto 3D, proporcionando a ilusão de detalhes sem alterar a malha subjacente. 
+Embora essas técnicas sejam eficazes, elas possuem limitações, especialmente quando aplicadas a estilos gráficos mais estilizados, como o pixel art, ou quando a resolução das imagens é baixa. 
+Em tais casos, os métodos tradicionais podem não capturar corretamente as nuances da superfície ou podem introduzir artefatos visuais, resultando em uma renderização menos realista. 
+Por exemplo, a análise de \cite{Moreira} destaca que a aplicação desses métodos em pixel art pode não produzir resultados precisos devido às especificidades do estilo.
+Essas desvantagens motivaram o desenvolvimento de técnicas mais avançadas, que buscam superar os limites das abordagens tradicionais e oferecer soluções mais adaptáveis a diferentes estilos e cenários.
+
+\section{Técnicas avançadas de pixel arte}
+
+A geração de mapas de normais para pixel art apresenta desafios únicos devido à natureza estilizada e à baixa resolução desse tipo de arte.
+Métodos tradicionais muitas vezes falham em capturar os detalhes necessários para representar corretamente a interação da luz com a superfície pixelada.
+Uma técnica avançada para abordar esse problema é a amostragem geométrica, que se concentra na análise da forma geométrica dos pixels para criar mapas de normais mais precisos \citeyear{yi_he__2021}. 
+Além disso, o uso de Redes Adversárias Generativas Condicionais (CGANs) oferece uma abordagem inovadora para a geração de mapas de normais em pixel arte, permitindo a produção de resultados mais refinados e detalhados. 
+Por exemplo, \citeyear{Su2018} desenvolveram um sistema interativo que utiliza técnicas de deep learning para gerar mapas de normais de alta qualidade a partir de esboços, melhorando a precisão e a interatividade do processo. 
+Essas redes utilizam amostras geométricas para treinar modelos capazes de gerar mapas de normais que respeitam as características visuais do pixel arte, como bordas nítidas e transições suaves de luz. No contexto de renderização de fluidos, abordagens baseadas em aprendizado profundo, como a proposta por \citeyear{myungjin_choi__2021}, refinam os mapas de normais para aprimorar a qualidade da renderização, preservando detalhes e suavidade. 
+Essas técnicas avançadas são essenciais para garantir que a iluminação e a profundidade sejam representadas de forma precisa, resultando em uma renderização mais realista e visualmente atraente.
+
 \section{Ferramentas para iluminação de cenários}
 
 Para a iluminação ser feita em ambiente gráfico foram criadas diversas ferramentas, dentre elas Vulkan e OpenGL, que trabalham em cima de toda a forma como a luz e os materiais funcionam no ambiente, proporcionando configurações avançadas de baixo nível para que exista controle total do ambiente sendo desenvolvido.
@@ -129,7 +157,7 @@ Para a iluminação ser feita em ambiente gráfico foram criadas diversas ferram
 Segundo o \cite{Khronos_Group2016-ir}, a Vulkan\footnote{disponível: https://www.vulkan.org/} é uma API \footnote{ Application Programming Interface } de gráficos de baixo nível, criada pela Khronos Group, com o objetivo de fornecer aos desenvolvedores um acesso mais direto ao hardware do computador para criar aplicativos gráficos de alto desempenho em várias plataformas e dispositivos. Ela pode ser usada para desenvolver aplicativos para diversos casos de uso. Embora as aplicações em Vulkan possam escolher usar um subconjunto das funcionalidades descritas abaixo, a API foi projetada para que um desenvolvedor possa usar todas elas em uma única API.multiplataforma.
 
 \subsection{OpenGL}
-OpenGL\footnote{disponível: https://www.opengl.org/} é uma biblioteca de renderização \cite{Khronos_Group2022-fq}. No entanto, o que o OpenGL não faz é reter informações sobre um "objeto". Tudo o que o OpenGL vê é uma esfera de polígonos e um conjunto de estados com os quais renderizá-los. não se lembra que foi desenhado uma linha em um local determinado e uma esfera em outro.
+OpenGL\footnote{disponível: https://www.opengl.org/} é uma biblioteca de renderização. No entanto, o que o OpenGL não faz é reter informações sobre um "objeto". Tudo o que o OpenGL vê é uma esfera de polígonos e um conjunto de estados com os quais renderizá-los. não se lembra que foi desenhado uma linha em um local determinado e uma esfera em outro.
 
 Por causa disso, a maneira geral de usar o OpenGL é desenhar tudo o que você precisa desenhar e, em seguida, mostrar essa imagem com um comando de troca de \textit{buffer} dependente da plataforma. Se você precisar atualizar a imagem, desenhe tudo novamente, mesmo que precise atualizar apenas parte dela. Se você quiser animar objetos se movendo na tela, precisa de um \textit{loop} que constantemente limpe e redesenhe a tela.
 
@@ -137,7 +165,7 @@ Por causa disso, a maneira geral de usar o OpenGL é desenhar tudo o que você p
 
 Está sessão tem o intuito de apresentar as \textit{engines} do mercado atual, afinal elas tem sua própria forma de criar iluminação e alterar de diversas maneiras para atender a um estilo visual único com \textit{shaders} ou outros efeitos.
 
-De acordo com \cite{Felipe2017-av} Em sua essência, a \textit{engine} é um software vital que compila todos os arquivos e bibliotecas essenciais dos quais um jogo depende. Essa ferramenta serve como base para o desenvolvimento de jogos, permitindo que os desenvolvedores criem habilmente sua visão.  No entanto, a criação de jogos requer muito mais do que apenas um mecanismo.  Os desenvolvedores também devem fazer uso de editores de imagem, software de áudio e vídeo, modeladores 3D e software vetorial, dependendo da situação.  Uma vez criados, esses elementos ganham vida dentro do motor, onde recebem animação, física, efeitos sonoros e outros recursos cruciais.
+De acordo com \cite{Felipe2017-av} Em sua essência, a \textit{engine} é um \textit{software}  vital que compila todos os arquivos e bibliotecas essenciais dos quais um jogo depende. Essa ferramenta serve como base para o desenvolvimento de jogos, permitindo que os desenvolvedores criem habilmente sua visão.  No entanto, a criação de jogos requer muito mais do que apenas um mecanismo.  Os desenvolvedores também devem fazer uso de editores de imagem, software de áudio e vídeo, modeladores 3D e software vetorial, dependendo da situação.  Uma vez criados, esses elementos ganham vida dentro do motor, onde recebem animação, física, efeitos sonoros e outros recursos cruciais.
 
 \subsubsection{Unity}
 A marca registrada do \href{https://unity.com/pt}{\textit{Unity}} reside em seu estilo de programação, utilizando de vários objetos conectando vários pontos em um mesmo código. Distinto e estrutura de projeto que possui uma simplicidade inigualável.  O \textit{Unity} permite que os desenvolvedores utilizem as alternativas disponíveis e abre vários caminhos para os criadores se concentrarem em seus conhecimentos, principalmente na conduta dos personagens, de ambas as classes segundo \cite{Henrique2014-ka}
