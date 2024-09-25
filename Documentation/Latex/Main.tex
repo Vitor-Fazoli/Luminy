@@ -4,14 +4,14 @@
 % Data: 21/12/2022
 
 \documentclass[
-	12pt,
-   	oneside,
-   	a4paper,
-   	chapter=TITLE,
-   	english,
-   	french,
-   	spanish,
-   	brazil,
+12pt,
+oneside,
+a4paper,
+chapter=TITLE,
+english,
+french,
+spanish,
+brazil,
 ]{abntex2}
 
 \usepackage{estrutura}
@@ -57,9 +57,9 @@
 }
 
 \preambulo{\imprimirtipotrabalho\ elaborado conforme a ABNT NBR 10719:10, apresentado ao Instituto Federal de Educação, Ciência e Tecnologia de São Paulo, como parte dos requisitos para a obtenção do grau de \imprimirgrau.
-\\
-\\
-Área de Concentração: \imprimirarea}
+	\\
+	\\
+	Área de Concentração: \imprimirarea}
 
 \setlength{\parindent}{1.3cm}
 \setlength{\parskip}{0.2cm}
@@ -70,49 +70,49 @@
 %                                   INÍCIO DO DOCUMENTO
 % ---------------------------------------------------------------------------------
 \begin{document}
-
-% Seleciona o idioma do documento
-\selectlanguage{brazil}
-
-% Retira espaço extra obsoleto entre as frases.
-\frenchspacing 
-
-\pretextual
-\input{01Capa}
-\input{02FolhaDeRosto}
-
-% ---
-% Inserir a ficha catalográfica
-% ---
-\input{03FichaCatalografica}
-
-% ---
-% Inserir ata de defesa
-% ---
-\input{04AtaDefesa}
-
-% ---
-% inserir o sumário
-% ---
-\pdfbookmark[0]{\contentsname}{toc}
-\tableofcontents*
-\cleardoublepage
-% ---
-
-\input{05Resumo}
-
-\textual
-\input{capitulo01Introducao}
-\input{capitulo02ConsideracoesGerais}
-\input{capitulo03Metodologia}
-\input{capitulo04AnaliseDosResultados}
-\input{capitulo05ConclusoesRecomendacoes}
-
-
-% ----------------------------------------------------------
-% Referências bibliográficas
-% ----------------------------------------------------------
-\postextual
-\bibliography{referencias}
-
+	
+	% Seleciona o idioma do documento
+	\selectlanguage{brazil}
+	
+	% Retira espaço extra obsoleto entre as frases.
+	\frenchspacing 
+	
+	\pretextual
+	\input{01Capa}
+	\input{02FolhaDeRosto}
+	
+	% ---
+	% Inserir a ficha catalográfica
+	% ---
+	\input{03FichaCatalografica}
+	
+	% ---
+	% Inserir ata de defesa
+	% ---
+	\input{04AtaDefesa}
+	
+	% ---
+	% inserir o sumário
+	% ---
+	\pdfbookmark[0]{\contentsname}{toc}
+	\tableofcontents*
+	\cleardoublepage
+	% ---
+	
+	\input{05Resumo}
+	
+	\textual
+	\input{capitulo01Introducao}
+	\input{capitulo02ConsideracoesGerais}
+	\input{capitulo03Metodologia}
+	\input{capitulo04AnaliseDosResultados}
+	\input{capitulo05ConclusoesRecomendacoes}
+	
+	
+	% ----------------------------------------------------------
+	% Referências bibliográficas
+	% ----------------------------------------------------------
+	\postextual
+	\bibliography{referencias}
+	
 \end{document}
